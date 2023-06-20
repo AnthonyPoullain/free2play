@@ -1,51 +1,27 @@
-import axios from 'axios';
-
 class Games {
-	static async getGames(): Promise<Game[] | null> {
-		if (!process.env.API_BASE_URL) console.error('Missing API_BASE_URL');
-		try {
-			const response = await axios.get(
-				process.env.API_BASE_URL + '/games'
-			);
-			/* const genres = response.data.map((game: Game) =>
-game.platform.trim()
-);
-console.log([...new Set(genres)]); */
-			return response.data;
-		} catch (error) {
-			console.error('An error occured while fetching');
-		}
-		return null;
-	}
+  static async getGames(): Promise<Game[] | null> {
+    const res = await fetch(process.env.API_BASE_URL + '/games');
+    if (!res.ok) throw new Error('Failed to fetch data');
+    const data = await res.json();
+    return data;
+  }
 
-	static async getGamesByCategory(category: string): Promise<Game[] | null> {
-		let categoryName = category.trim().toLowerCase().replaceAll(' ', '-');
-		if (!process.env.API_BASE_URL) console.error('Missing API_BASE_URL');
-		try {
-			const response = await axios.get(
-				process.env.API_BASE_URL + `/games?category=${categoryName}`
-			);
-			return response.data;
-		} catch (error) {
-			console.error(
-				'An error occured while fetching. Possibly invalid category or tag name.'
-			);
-		}
-		return null;
-	}
+  static async getGamesByCategory(category: string): Promise<Game[] | null> {
+    let categoryName = category.trim().toLowerCase().replaceAll(' ', '-');
+    const res = await fetch(
+      process.env.API_BASE_URL + `/games?category=${categoryName}`
+    );
+    if (!res.ok) throw new Error('Failed to fetch data');
+    const data = await res.json();
+    return data;
+  }
 
-	static async getGame(id: string): Promise<Game | null> {
-		if (!process.env.API_BASE_URL) console.error('Missing API_BASE_URL');
-		try {
-			const response = await axios.get(
-				process.env.API_BASE_URL + `/game?id=${id}`
-			);
-			return response.data;
-		} catch (error) {
-			console.error('An error occured while fetching');
-		}
-		return null;
-	}
+  static async getGame(id: string): Promise<Game | null> {
+    const res = await fetch(process.env.API_BASE_URL + `/game?id=${id}`);
+    if (!res.ok) throw new Error('Failed to fetch data');
+    const data = await res.json();
+    return data;
+  }
 }
 
 export { Games };
