@@ -21,6 +21,7 @@ export default function useComponentVisible(initialIsVisible: boolean): {
    * @param e - The event object.
    */
   const handleClickOutside = (e: Event): void => {
+    console.log((e.target as Node).nodeName);
     if (
       ref.current &&
       (!ref.current.contains(e.target as Node) ||

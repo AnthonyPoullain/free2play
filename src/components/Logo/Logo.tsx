@@ -8,7 +8,7 @@ function Logo() {
         2
       </span>
       Play
-      <span className="mt-2 text-sm lowercase">.fr</span>
+      {/* <span className="mt-2 text-sm lowercase">.fr</span> */}
     </div>
   );
 }

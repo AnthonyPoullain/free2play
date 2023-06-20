@@ -61,7 +61,7 @@ function Sidebar({
           <li key={genre}>
             <Link
               className="hover:bg-gray-700 block px-10 py-1 ease-out border-b border-gray-700"
-              href={`genre/${genre}`}
+              href={`/genre/${genre}`}
             >
               {genre}
             </Link>

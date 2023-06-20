@@ -5,7 +5,9 @@ export default async function Game({ params }: { params: { id: string } }) {
   const game = await Games.getGame(params.id);
   return game ? (
     <div className="md:text-left md:items-start flex flex-col items-center text-center">
-      <h1 className="mb-4 text-3xl font-bold">{game.title}</h1>
+      <h1 className="md:text-left mt-4 mb-12 text-3xl font-bold text-center">
+        {game.title}
+      </h1>
       <Image
         className="mb-8 rounded-md"
         src={game.thumbnail}

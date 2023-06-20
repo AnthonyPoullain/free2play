@@ -3,6 +3,7 @@ class Games {
     const res = await fetch(process.env.API_BASE_URL + '/games');
     if (!res.ok) throw new Error('Failed to fetch data');
     const data = await res.json();
+    /* const p1 = await new Promise((res) => setTimeout(() => res('p1'), 5000)); */
     return data;
   }
 

@@ -1,15 +1,24 @@
 'use client';
 
 import Link from 'next/link';
-import { Logo, SearchBar, Sidebar } from '..';
+import { Logo, SearchBar, SearchModal, Sidebar } from '..';
 import { GiHamburgerMenu } from 'react-icons/gi';
-/* import { useState } from 'react'; */
-import useComponentVisible from '@/src/hooks/useComponentVisible';
+import { useComponentVisible } from '@/src/hooks';
 
 function Header() {
-  /* const [isComponentVisible, setSidebarIsOpen] = useState(false); */
-  const { ref, isComponentVisible, setIsComponentVisible } =
-    useComponentVisible(false);
+  const SidebarController = useComponentVisible(false);
+  const SearchModalController = useComponentVisible(false);
+
+  function handleShortcut(e: KeyboardEvent) {
+    if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
+      SearchModalController.setIsComponentVisible(
+        !SearchModalController.isComponentVisible
+      );
+    }
+  }
+
+  if (typeof document !== 'undefined')
+    document.addEventListener('keydown', handleShortcut);
 
   return (
     <>
@@ -18,7 +27,11 @@ function Header() {
           <button
             type="button"
             className="mr-4 text-lg"
-            onClick={() => setIsComponentVisible(!isComponentVisible)}
+            onClick={() =>
+              SidebarController.setIsComponentVisible(
+                !SidebarController.isComponentVisible
+              )
+            }
           >
             <GiHamburgerMenu />
           </button>
@@ -26,11 +39,24 @@ function Header() {
             <Logo />
           </Link>
           <div className="md:w-full flex justify-around">
-            <SearchBar />
+            <SearchBar
+              onClick={() =>
+                SearchModalController.setIsComponentVisible(
+                  !SearchModalController.isComponentVisible
+                )
+              }
+            />
           </div>
         </div>
       </header>
-      <Sidebar sidebarRef={ref} isOpen={isComponentVisible} />
+      <SearchModal
+        modalRef={SearchModalController.ref}
+        isOpen={SearchModalController.isComponentVisible}
+      />
+      <Sidebar
+        sidebarRef={SidebarController.ref}
+        isOpen={SidebarController.isComponentVisible}
+      />
     </>
   );
 }
