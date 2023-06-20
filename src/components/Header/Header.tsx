@@ -22,7 +22,7 @@ function Header() {
 
   return (
     <>
-      <header className="sticky top-0 z-40 bg-gray-800">
+      <header className="sticky top-0 z-40 text-white bg-gray-800">
         <div className="flex items-center justify-between px-4 py-2 mx-auto">
           <button
             type="button"

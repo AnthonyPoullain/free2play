@@ -9,5 +9,7 @@
 
 body {
   color: rgb(var(--foreground-rgb));
-  background: rgb(var(--background-rgb));
+  @apply text-zinc-300;
+  /* background: rgb(var(--background-rgb)); */
+  @apply bg-zinc-900;
 }

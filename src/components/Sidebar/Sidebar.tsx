@@ -27,7 +27,7 @@ function Sidebar({
   return isOpen ? (
     <aside
       ref={sidebarRef}
-      className="w-72 absolute flex flex-col z-30 h-[calc(100vh-60px)] bg-gray-800"
+      className="text-white w-72 absolute flex flex-col z-30 h-[calc(100vh-60px)] bg-gray-800"
     >
       <div className="bg-sky-600 gap-x-2 flex items-center px-4 py-2 font-bold">
         <BiFoodMenu />
@@ -45,7 +45,7 @@ function Sidebar({
         <li>
           <Link
             className="hover:bg-gray-700 block px-10 py-2 ease-out border-b border-gray-700"
-            href="/"
+            href="/games"
           >
             All Games
           </Link>
