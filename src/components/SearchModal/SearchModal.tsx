@@ -63,7 +63,7 @@ function SearchModal() {
 
   return (
     <div
-      className={`absolute inset-0 top-0 left-0 w-full h-full bg-black bg-opacity-50 z-50 backdrop-blur-sm transition-opacity`}
+      className={`absolute inset-0 top-0 left-0 w-full h-full bg-black bg-opacity-50 z-50 transition-opacity`}
     >
       <FocusTrap>
         <div className="h-fit inset-x-[10vw] md:inset-x-[20vw] inset-y-[20vh] absolute p-6 bg-gray-800 rounded-md">

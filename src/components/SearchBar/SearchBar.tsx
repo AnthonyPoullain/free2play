@@ -38,7 +38,6 @@ function SearchBar() {
       );
       if (clickedOnResult) {
         setSearchModalIsOpen(false);
-        console.log('close');
       }
     }
     document.addEventListener('click', handleClickResult);

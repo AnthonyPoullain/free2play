@@ -1,8 +1,14 @@
 import Link from 'next/link';
 import { BiCategory, BiFoodMenu } from 'react-icons/bi';
-import React from 'react';
+import React, { RefObject } from 'react';
 
-function Sidebar() {
+function Sidebar({
+  isOpen,
+  sidebarRef,
+}: {
+  isOpen: boolean;
+  sidebarRef?: RefObject<HTMLDivElement>;
+}) {
   const GENRES = [
     'Shooter',
     'Strategy',
@@ -18,8 +24,11 @@ function Sidebar() {
     'Fantasy',
   ].sort();
 
-  return (
-    <aside className="w-72 absolute flex flex-col z-30 h-[calc(100vh-60px)] bg-gray-800">
+  return isOpen ? (
+    <aside
+      ref={sidebarRef}
+      className="w-72 absolute flex flex-col z-30 h-[calc(100vh-60px)] bg-gray-800"
+    >
       <div className="bg-sky-600 gap-x-2 flex items-center px-4 py-2 font-bold">
         <BiFoodMenu />
         <h2>Menu</h2>
@@ -60,6 +69,6 @@ function Sidebar() {
         ))}
       </ul>
     </aside>
-  );
+  ) : null;
 }
 export default Sidebar;

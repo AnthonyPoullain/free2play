@@ -3,10 +3,14 @@
 import Link from 'next/link';
 import { Logo, SearchBar, Sidebar } from '..';
 import { GiHamburgerMenu } from 'react-icons/gi';
-import { useState } from 'react';
+/* import { useState } from 'react'; */
+import useComponentVisible from '@/src/hooks/useComponentVisible';
 
 function Header() {
-  const [sidebarIsOpen, setSidebarIsOpen] = useState(false);
+  /* const [isComponentVisible, setSidebarIsOpen] = useState(false); */
+  const { ref, isComponentVisible, setIsComponentVisible } =
+    useComponentVisible(false);
+
   return (
     <>
       <header className="sticky top-0 z-40 bg-gray-800">
@@ -14,7 +18,7 @@ function Header() {
           <button
             type="button"
             className="mr-4 text-lg"
-            onClick={() => setSidebarIsOpen(!sidebarIsOpen)}
+            onClick={() => setIsComponentVisible(!isComponentVisible)}
           >
             <GiHamburgerMenu />
           </button>
@@ -26,7 +30,7 @@ function Header() {
           </div>
         </div>
       </header>
-      {sidebarIsOpen ? <Sidebar /> : null}
+      <Sidebar sidebarRef={ref} isOpen={isComponentVisible} />
     </>
   );
 }
