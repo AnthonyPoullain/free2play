@@ -5,7 +5,7 @@ class Games {
     const res = await fetch(
       `${process.env.API_BASE_URL}/games${filter && '?sort-by=' + filter}`
     );
-    if (!res.ok) throw new Error('Failed to fetch data');
+    /* if (!res.ok) throw new Error('Failed to fetch data'); */
     const data = await res.json();
     /* const p1 = await new Promise((res) => setTimeout(() => res('p1'), 5000)); */
     return data;
@@ -16,14 +16,14 @@ class Games {
     const res = await fetch(
       process.env.API_BASE_URL + `/games?category=${categoryName}`
     );
-    if (!res.ok) throw new Error('Failed to fetch data');
+    /* if (!res.ok) throw new Error('Failed to fetch data'); */
     const data = await res.json();
     return data;
   }
 
   static async getGame(id: string): Promise<Game | null> {
     const res = await fetch(process.env.API_BASE_URL + `/game?id=${id}`);
-    if (!res.ok) throw new Error('Failed to fetch data');
+    /* if (!res.ok) throw new Error('Failed to fetch data'); */
     const data = await res.json();
     return data;
   }

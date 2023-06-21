@@ -23,7 +23,7 @@ function Header() {
   return (
     <>
       <header className="sticky top-0 z-40 text-white bg-gray-800">
-        <div className="flex items-center justify-between px-4 py-2 mx-auto">
+        <div className="flex items-center justify-between px-4 py-2">
           <button
             type="button"
             className="mr-4 text-lg"
@@ -38,7 +38,8 @@ function Header() {
           <Link className="w-fit block" href="/">
             <Logo />
           </Link>
-          <div className="md:w-full flex justify-around">
+          {/* NOTE: remove 'md:' below for logo to stay on the left */}
+          <div className="md:w-full flex">
             <SearchBar
               onClick={() =>
                 SearchModalController.setIsComponentVisible(
