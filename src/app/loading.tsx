@@ -1,21 +1,29 @@
+import { SectionWithTitle, SkeletonImage } from '../components';
+
 export default async function Loading() {
-  const games = Array(36).fill(null);
-  return (
-    <div>
-      <div>
-        <h1 className="md:text-left mb-12 text-3xl font-bold text-center">
-          <strong className="text-teal-600">Loading</strong> Free to Play
-          Games...
-        </h1>
-      </div>
-      <div className="sm:grid-cols-3 grid w-full grid-cols-1 gap-1 mx-auto">
-        {games?.map(() => (
-          <div
-            key={crypto.randomUUID()}
-            className="animate-pulse h-44 relative w-full bg-gray-400 bg-opacity-25"
-          ></div>
-        ))}
-      </div>
-    </div>
-  );
+	return (
+		<div>
+			<h1 className="md:text-left mt-4 mb-12 text-3xl font-bold text-center">
+				Welcome to Free2Play!
+			</h1>
+			<SectionWithTitle title="Recently Added" border={true}>
+				<div className="grid grid-cols-4 gap-2">
+					{Array(4)
+						.fill(null)
+						.map(() => (
+							<SkeletonImage key={crypto.randomUUID()} />
+						))}
+				</div>
+			</SectionWithTitle>
+			<SectionWithTitle title="Popular Games">
+				<div className="grid grid-cols-3 gap-2">
+					{Array(36)
+						.fill(null)
+						.map(() => (
+							<SkeletonImage key={crypto.randomUUID()} />
+						))}
+				</div>
+			</SectionWithTitle>
+		</div>
+	);
 }

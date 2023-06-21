@@ -12,14 +12,4 @@ body {
   @apply text-zinc-300;
   /* background: rgb(var(--background-rgb)); */
   @apply bg-zinc-900;
-
-  /* Fix mobile 100vh scrollbar issue */
-  min-height: 100vh;
-  min-height: fill-available;
-  min-height: -webkit-fill-available;
-}
-
-html {
-  height: fill-available;
-  height: -webkit-fill-available;
 }

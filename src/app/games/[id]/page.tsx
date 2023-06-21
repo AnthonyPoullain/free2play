@@ -3,12 +3,15 @@ import { Games } from '@/src/services';
 import { CardGrid, SectionWithTitle } from '@/src/components';
 import { BsFillPlayFill, BsTwitch, BsYoutube } from 'react-icons/bs';
 import Link from 'next/link';
+import { shuffleArray } from '@/src/utils';
 
 export default async function Game({ params }: { params: { id: string } }) {
 	const game = await Games.getGame(params.id);
 	const sameGenreGames = game?.genre
 		? await Games.getGamesByCategory(game?.genre)
 		: null;
+
+	if (sameGenreGames) shuffleArray(sameGenreGames as []);
 
 	return game ? (
 		<div className="md:text-left md:items-start flex flex-col items-center text-center">
@@ -37,17 +40,21 @@ export default async function Game({ params }: { params: { id: string } }) {
 							.trim()
 							.toLowerCase()}`}
 						target="_blank"
-						className="hover:bg-gray-700 focus:bg-gray-700 flex items-center justify-center w-full h-12 gap-2 p-2 font-bold bg-gray-800 rounded-md"
+						className="hover:bg-gray-700 focus:bg-gray-700 flex items-center justify-center w-full h-12 gap-2 p-2 bg-gray-800 rounded-md"
 					>
-						<span>Watch on Twitch</span>
+						<span>
+							Watch on <strong className="font-bold">Twitch</strong>
+						</span>
 						<BsTwitch className="inline text-lg text-purple-700" />
 					</Link>
 					<Link
 						href={`https://www.youtube.com/results?search_query=${game.title}`}
 						target="_blank"
-						className="hover:bg-gray-700 focus:bg-gray-700 flex items-center justify-center w-full h-12 gap-2 p-2 font-bold bg-gray-800 rounded-md"
+						className="hover:bg-gray-700 focus:bg-gray-700 flex items-center justify-center w-full h-12 gap-2 p-2 bg-gray-800 rounded-md"
 					>
-						<span>Watch on YouTube</span>
+						<span>
+							Watch on <strong className="font-bold">YouTube</strong>
+						</span>
 						<BsYoutube className="inline text-2xl text-red-700" />
 					</Link>
 				</div>
