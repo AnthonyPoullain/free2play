@@ -1,8 +1,9 @@
+import { ReactNode } from 'react';
 import { Card } from '..';
 import SectionWithTitle from '../SectionWithTitle/SectionWithTitle';
 
 export type CardGridProperties = {
-	title?: string;
+	title?: string | ReactNode;
 	games: Game[];
 	border?: boolean;
 	cols?: 1 | 2 | 3 | 4 | 5 | 6;
