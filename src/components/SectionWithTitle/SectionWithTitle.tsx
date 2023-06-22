@@ -1,7 +1,7 @@
 import { ReactNode } from 'react';
 
 export type SectionWithTitleProperties = {
-	title?: string;
+	title?: string | ReactNode;
 	children?: ReactNode;
 	border?: boolean;
 };

@@ -74,7 +74,7 @@ function SearchModal({
 				className={`absolute inset-0 top-0 left-0 w-full h-full bg-black bg-opacity-50 z-50 transition-opacity`}
 			>
 				<FocusTrap>
-					<div className="h-fit inset-x-[3vw] md:inset-x-[20vw] inset-y-[10vh] md:inset-y-[15vh] absolute sm:p-6 py-4 px-2 bg-gray-800 rounded-md">
+					<div className="h-fit inset-x-[3vw] md:inset-x-[20vw] inset-y-[7vh] md:inset-y-[15vh] absolute sm:p-6 py-4 px-2 bg-gray-800 rounded-md">
 						{/* SEARCH BAR */}
 						<div ref={modalRef} className="relative">
 							<input

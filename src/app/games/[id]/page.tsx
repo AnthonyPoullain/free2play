@@ -76,12 +76,24 @@ export default async function Game({ params }: { params: { id: string } }) {
 					))}
 				</div>
 			</SectionWithTitle>
-			<SectionWithTitle title={`About ${game.title}`}>
+
+			<SectionWithTitle
+				title={
+					<>
+						About <span className="sm:inline hidden">{game.title}</span>
+					</>
+				}
+			>
 				<p className="text-justify">{game.description}</p>
 			</SectionWithTitle>
+
 			{sameGenreGames ? (
 				<CardGrid
-					title={`More Free ${game.genre}`}
+					title={
+						<>
+							More <span className="sm:inline hidden">{game.genre}</span>
+						</>
+					}
 					games={sameGenreGames.splice(0, 8)}
 					cols={4}
 					border={true}

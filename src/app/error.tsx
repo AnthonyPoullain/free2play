@@ -16,7 +16,7 @@ function error() {
 			}, 1000);
 			return () => clearTimeout(countdown);
 		}
-		router.push('/');
+		router.back();
 	}, [count]);
 
 	return (
