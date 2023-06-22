@@ -11,6 +11,7 @@ function Header() {
 
   function handleShortcut(e: KeyboardEvent) {
     if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
+      e.preventDefault();
       SearchModalController.setIsComponentVisible(
         !SearchModalController.isComponentVisible
       );
