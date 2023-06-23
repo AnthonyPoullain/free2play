@@ -1,48 +1,23 @@
-'use client';
-
 import Image from 'next/image';
 import { Games } from '@/src/services';
 import { CardGrid, SectionWithTitle } from '@/src/components';
 import { BsFillPlayFill, BsTwitch, BsYoutube } from 'react-icons/bs';
 import Link from 'next/link';
 import { shuffleArray } from '@/src/utils';
-import { useEffect, useState } from 'react';
 
 export default async function Game({ params }: { params: { id: string } }) {
-  const [game, setGame] = useState<Game | null>(null);
-  const [similarGames, setSimilarGames] = useState<Game[] | null>(null);
-  const [popularGames, setPopularGames] = useState<Game[] | null>(null);
+  const game = await Games.getGame(params.id);
 
-  useEffect(() => {
-    async function getGameData(): Promise<void> {
-      const gameData = await Games.getGame(params.id);
-      setGame(gameData);
-    }
-    getGameData();
-  }, []);
+  const similarGames = game
+    ? await Games.getGamesByCategory(game?.genre)
+    : null;
 
-  useEffect(() => {
-    if (!game) return;
+  if (similarGames) shuffleArray(similarGames as []);
 
-    async function getPopularGames(): Promise<void> {
-      const popularGamesData = await Games.getGames('popularity');
-      popularGamesData?.splice(0, 8);
-      setPopularGames(popularGamesData);
-    }
-
-    async function getSimilarGames(): Promise<void> {
-      const similarGamesData = game
-        ? await Games.getGamesByCategory(game?.genre)
-        : null;
-      if (similarGamesData && similarGamesData?.length >= 8) {
-        shuffleArray(similarGamesData as []);
-        setSimilarGames(similarGamesData?.splice(0, 8));
-        return;
-      }
-      getPopularGames();
-    }
-    getSimilarGames();
-  }, [game]);
+  const popularGames =
+    similarGames && similarGames?.length
+      ? null
+      : await Games.getGames('popularity');
 
   return game ? (
     <div className="md:text-left md:items-start flex flex-col items-center text-center">
@@ -50,14 +25,7 @@ export default async function Game({ params }: { params: { id: string } }) {
         {game.title}
       </h1>
       <section className="w-fit flex flex-col gap-2 mb-4 text-sm">
-        <Image
-          src={game.thumbnail}
-          alt={game.title}
-          width={365}
-          height={200}
-          className="transition-opacity duration-1000 rounded-md opacity-0"
-          onLoadingComplete={(image) => image.classList.remove('opacity-0')}
-        />
+        <Image src={game.thumbnail} alt={game.title} width={365} height={200} />
         <Link
           href={game.game_url}
           target="_blank"
@@ -106,10 +74,6 @@ export default async function Game({ params }: { params: { id: string } }) {
                   alt="screenshot"
                   width={600}
                   height={80}
-                  className="transition-opacity duration-1000 opacity-0"
-                  onLoadingComplete={(image) =>
-                    image.classList.remove('opacity-0')
-                  }
                 />
               </div>
             ))}
@@ -127,19 +91,19 @@ export default async function Game({ params }: { params: { id: string } }) {
         <p className="text-justify">{game.description}</p>
       </SectionWithTitle>
 
-      {similarGames ? (
+      {similarGames && similarGames.length >= 8 ? (
         <CardGrid
           title={
             <>
               More <span className="sm:inline hidden">{game.genre}</span>
             </>
           }
-          games={similarGames}
+          games={similarGames.splice(0, 8)}
           cols={4}
           border={true}
         />
       ) : null}
-      {popularGames ? (
+      {popularGames && popularGames.length >= 8 ? (
         <CardGrid
           title={
             <>
