@@ -14,7 +14,7 @@ export default async function GamesByCategrory({
     <div>
       <h1 className="md:text-left mt-4 mb-12 text-3xl font-bold text-center">
         {games?.length} Free to Play{' '}
-        <strong className="text-teal-600">
+        <strong className="text-sky-600">
           {params.genre.replaceAll('%20', ' ')}
         </strong>{' '}
         Games

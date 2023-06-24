@@ -1,3 +1,11 @@
+type SystemRequirements = {
+  os: string;
+  processor: string;
+  memory: string;
+  graphics: string;
+  storage: string;
+};
+
 type Genre =
   | 'Shooter'
   | 'MMOARPG'

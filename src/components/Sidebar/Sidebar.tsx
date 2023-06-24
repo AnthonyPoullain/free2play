@@ -61,7 +61,7 @@ function Sidebar({
             </li>
           </ul>
 
-          <div className="gap-x-2 flex items-center px-4 py-2 font-bold bg-teal-600">
+          <div className="gap-x-2 bg-sky-600 flex items-center px-4 py-2 font-bold">
             <BiCategory />
             <h2>Genre</h2>
           </div>
