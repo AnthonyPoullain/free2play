@@ -37,7 +37,7 @@ function Sidebar({
           exit={{ x: '-100%' }}
           transition={{ type: 'tween', ease: 'easeOut', duration: 0.2 }}
           ref={sidebarRef}
-          className="text-white w-72 absolute flex flex-col z-30 h-[calc(100vh-60px)] bg-gray-800 overflow-auto"
+          className="text-white w-72 absolute flex flex-col z-30 h-[calc(100dvh-60px)] bg-gray-800 overflow-auto"
         >
           <div className="bg-sky-600 gap-x-2 flex-nowrap whitespace-nowrap flex items-center px-4 py-2 font-bold">
             <BiFoodMenu />
