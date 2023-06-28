@@ -14,6 +14,7 @@ function Sidebar({
 }) {
   const GENRES = [
     'Shooter',
+    'Anime',
     'Strategy',
     'MMORPG',
     'Fighting',
@@ -36,7 +37,7 @@ function Sidebar({
           exit={{ x: '-100%' }}
           transition={{ type: 'tween', ease: 'easeOut', duration: 0.2 }}
           ref={sidebarRef}
-          className="text-white w-72 absolute flex flex-col z-30 h-[calc(100vh-60px)] bg-gray-800 overflow-hidden"
+          className="text-white w-72 absolute flex flex-col z-30 h-[calc(100vh-60px)] bg-gray-800 overflow-auto"
         >
           <div className="bg-sky-600 gap-x-2 flex-nowrap whitespace-nowrap flex items-center px-4 py-2 font-bold">
             <BiFoodMenu />
@@ -69,7 +70,7 @@ function Sidebar({
             {GENRES.map((genre) => (
               <li key={genre}>
                 <Link
-                  className="hover:bg-gray-700 block px-10 py-1 ease-out border-b border-gray-700"
+                  className="hover:bg-gray-700 block px-10 py-2 ease-out border-b border-gray-700"
                   href={`/genre/${genre}`}
                 >
                   {genre}

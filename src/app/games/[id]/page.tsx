@@ -68,77 +68,7 @@ export default async function Game({ params }: { params: { id: string } }) {
             </Link>
           </div>
         </section>
-        <section className="flex flex-col gap-4">
-          <table className="align-left w-full p-2 text-left border border-separate border-gray-300 rounded">
-            <thead className="uppercase">
-              <tr className="w-full">
-                <th className="flex items-center w-full gap-2">
-                  <span>Informations</span>{' '}
-                  <BiInfoCircle className="text-sky-600 inline" />
-                </th>
-              </tr>
-            </thead>
-            <tbody className="text-sm">
-              <tr>
-                <td>Title</td>
-                <td>{game?.title}</td>
-              </tr>
-              <tr>
-                <td>Genre</td>
-                <td>{game?.genre}</td>
-              </tr>
-              <tr>
-                <td>Platform</td>
-                <td>{game?.platform}</td>
-              </tr>
-              <tr>
-                <td>Publisher</td>
-                <td>{game?.publisher}</td>
-              </tr>
-              <tr>
-                <td>Developer</td>
-                <td>{game?.developer}</td>
-              </tr>
-              <tr>
-                <td>Release Date</td>
-                <td>{new Date(game.release_date).toLocaleDateString()}</td>
-              </tr>
-            </tbody>
-          </table>
-          <table className="gray-300 w-full p-2 text-left text-gray-500 rounded">
-            <thead className="uppercase">
-              <tr className="w-full">
-                <th className="md:justify-start flex items-center justify-center w-full gap-2">
-                  <span>System Requirements</span>{' '}
-                  <IoMdSettings className="text-sky-800" />
-                </th>
-              </tr>
-            </thead>
-            <tbody className="md:text-left text-sm text-center">
-              {game.minimum_system_requirements &&
-              !game.platform.toLowerCase().includes('browser') ? (
-                Object.values(
-                  game?.minimum_system_requirements as SystemRequirements
-                ).map((requirement: string) => (
-                  <tr className="w-1/2" key={crypto.randomUUID()}>
-                    <td>{requirement}</td>
-                  </tr>
-                ))
-              ) : (
-                <tr>
-                  <th className="font-normal">
-                    <strong className="font-bold">{game?.title}</strong> is a
-                    browser based game and should run smoothly on practically
-                    any PC with an updated web browser. If you have old hardware
-                    or software, you may still be able to play, but your game
-                    experience may suffer. For the best gameplay experience, we
-                    recommend the latest versions of Chrome or Firefox.
-                  </th>
-                </tr>
-              )}
-            </tbody>
-          </table>
-        </section>
+        <section className="flex flex-col gap-4"></section>
       </div>
       {game.screenshots && game.screenshots.length ? (
         <SectionWithTitle title="Screenshots" border={true}>
@@ -170,6 +100,61 @@ export default async function Game({ params }: { params: { id: string } }) {
         }
       >
         <p className="text-justify">{game.description}</p>
+      </SectionWithTitle>
+
+      <SectionWithTitle title={'More info'}>
+        <table className="align-left sm:mx-0 border-zinc-300 w-full max-w-md p-2 mx-auto mt-2 text-left border border-separate rounded">
+          <tr>
+            <td>Title</td>
+            <td>{game?.title}</td>
+          </tr>
+          <tr>
+            <td>Genre</td>
+            <td>{game?.genre}</td>
+          </tr>
+          <tr>
+            <td>Platform</td>
+            <td>{game?.platform}</td>
+          </tr>
+          <tr>
+            <td>Publisher</td>
+            <td>{game?.publisher}</td>
+          </tr>
+          <tr>
+            <td>Developer</td>
+            <td>{game?.developer}</td>
+          </tr>
+          <tr>
+            <td>Release Date</td>
+            <td>{new Date(game.release_date).toLocaleDateString()}</td>
+          </tr>
+        </table>
+      </SectionWithTitle>
+
+      <SectionWithTitle title="System requirements">
+        <table className="sm:text-left w-full p-2 text-center rounded">
+          {game.minimum_system_requirements &&
+          !game.platform.toLowerCase().includes('browser') ? (
+            Object.values(
+              game?.minimum_system_requirements as SystemRequirements
+            ).map((requirement: string) => (
+              <tr key={crypto.randomUUID()}>
+                <td>{requirement}</td>
+              </tr>
+            ))
+          ) : (
+            <tr>
+              <td className="font-normal">
+                <strong className="font-bold">{game?.title}</strong> is a
+                browser based game and should run smoothly on practically any PC
+                with an updated web browser. If you have old hardware or
+                software, you may still be able to play, but your game
+                experience may suffer. For the best gameplay experience, we
+                recommend the latest versions of Chrome or Firefox.
+              </td>
+            </tr>
+          )}
+        </table>
       </SectionWithTitle>
 
       {similarGames && similarGames.length >= 8 ? (
