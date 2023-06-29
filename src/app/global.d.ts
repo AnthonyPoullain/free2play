@@ -7,21 +7,23 @@ type SystemRequirements = {
 };
 
 type Genre =
-  | 'Shooter'
-  | 'MMOARPG'
-  | 'ARPG'
-  | 'Strategy'
-  | 'MMORPG'
-  | 'Fighting'
-  | 'Action RPG'
-  | 'Battle Royale'
-  | 'MOBA'
-  | 'Sports'
-  | 'Racing'
-  | 'Card Game'
-  | 'MMO'
-  | 'Social'
-  | 'Fantasy';
+	| 'Anime'
+	| 'Shooter'
+	| 'MMOARPG'
+	| 'Sci-fi'
+	| 'Card'
+	| 'ARPG'
+	| 'Strategy'
+	| 'MMORPG'
+	| 'Fighting'
+	| 'Action RPG'
+	| 'Battle Royale'
+	| 'MOBA'
+	| 'Sports'
+	| 'Racing'
+	| 'MMO'
+	| 'Social'
+	| 'Fantasy';
 
 type Game = {
   id: number;
