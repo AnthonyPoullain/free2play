@@ -46,7 +46,7 @@ export default async function loading() {
 				</div>
 			</section>
 			<SectionWithTitle title="Screenshots" border={true}>
-				<div className="grid grid-cols-4 gap-2">
+				<div className="sm:grid-cols-4 grid gap-2">
 					{Array(4)
 						.fill(null)
 						.map(() => (

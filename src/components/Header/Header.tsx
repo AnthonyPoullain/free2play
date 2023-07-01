@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { Logo, SearchBar, SearchModal, Sidebar } from '..';
 import { GiHamburgerMenu } from 'react-icons/gi';
 import { useComponentVisible } from '@/src/hooks';
+import { useEffect } from 'react';
 
 function Header() {
   const SidebarController = useComponentVisible(false);
@@ -18,8 +19,12 @@ function Header() {
     }
   }
 
-  if (typeof document !== 'undefined')
-    document.addEventListener('keydown', handleShortcut);
+  useEffect(() => {
+    window.addEventListener('keydown', handleShortcut);
+    return () => {
+      window.removeEventListener('keydown', handleShortcut);
+    };
+  }, []);
 
   return (
     <>
