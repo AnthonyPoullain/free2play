@@ -2,9 +2,9 @@
 
 import { motion } from 'framer-motion';
 import { ScreenshotModal, SectionWithTitle } from '..';
-import Image from 'next/image';
+import NextImage from 'next/image';
 import { useComponentVisible } from '@/src/hooks';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 function ScreenshotSection({ screenshots }: { screenshots: Screenshot[] }) {
   const { ref, isComponentVisible, setIsComponentVisible } =
@@ -16,6 +16,25 @@ function ScreenshotSection({ screenshots }: { screenshots: Screenshot[] }) {
     setIsComponentVisible(!isComponentVisible);
   }
 
+  async function cacheImages(srcArray: string[]) {
+    const promises = srcArray.map((src: string) => {
+      return new Promise((resolve, reject) => {
+        const img = new Image();
+        img.src = src;
+        img.onload = resolve;
+        img.onerror = reject;
+      });
+    });
+
+    await Promise.all(promises);
+  }
+
+  useEffect(() => {
+    const images = screenshots.map((screen) => screen.image);
+    console.log(images);
+    cacheImages(images);
+  }, []);
+
   return (
     <SectionWithTitle title="Screenshots" border={true}>
       <div className={`sm:grid-cols-${screenshots?.length} grid gap-2`}>
@@ -26,7 +45,7 @@ function ScreenshotSection({ screenshots }: { screenshots: Screenshot[] }) {
             onClick={() => handleClick(i)}
             key={screen.id}
           >
-            <Image
+            <NextImage
               className="transition-opacity duration-1000 opacity-0"
               src={screen.image}
               alt="screenshot"
