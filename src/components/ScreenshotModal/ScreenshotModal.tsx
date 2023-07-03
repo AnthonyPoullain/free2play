@@ -1,9 +1,10 @@
 'use client';
 
-import { RefObject, useEffect, useState } from 'react';
+import { RefObject, useEffect } from 'react';
 import { createPortal } from 'react-dom';
 import Image from 'next/image';
 import { BsArrowLeftCircle, BsArrowRightCircle } from 'react-icons/bs';
+import { useImageSlider } from '@/src/hooks';
 
 export default function ScreenshotModal({
   isOpen,
@@ -16,18 +17,10 @@ export default function ScreenshotModal({
   images: Screenshot[];
   initialIndex: number;
 }) {
-  const [currentImageIndex, setCurrentImageIndex] =
-    useState<number>(initialIndex);
-
-  function nextImage(): void {
-    if (currentImageIndex === images.length - 1) return;
-    setCurrentImageIndex((prev) => prev + 1);
-  }
-
-  function previousImage(): void {
-    if (currentImageIndex === 0) return;
-    setCurrentImageIndex((prev) => prev - 1);
-  }
+  const [currentImageIndex, nextImage, previousImage] = useImageSlider(
+    initialIndex,
+    images.length - 1
+  );
 
   function handleShortcut(e: KeyboardEvent): void {
     e.preventDefault();
@@ -74,24 +67,20 @@ export default function ScreenshotModal({
                 ))}
               </div>
               <div className="group-hover:sm:opacity-100 transition-opacity duration-300 ease-out opacity-0">
-                {currentImageIndex !== 0 && (
-                  <button
-                    type="button"
-                    onClick={previousImage}
-                    className="sm:left-4 bottom-1/2 w-fit absolute left-0 z-50 h-full px-4 text-3xl translate-y-1/2 bg-gray-800 bg-opacity-50"
-                  >
-                    <BsArrowLeftCircle />
-                  </button>
-                )}
-                {currentImageIndex !== images.length - 1 && (
-                  <button
-                    type="button"
-                    onClick={nextImage}
-                    className="sm:right-4 bottom-1/2 w-fit absolute right-0 z-50 h-full px-4 text-3xl translate-y-1/2 bg-gray-800 bg-opacity-50"
-                  >
-                    <BsArrowRightCircle />
-                  </button>
-                )}
+                <button
+                  type="button"
+                  onClick={previousImage}
+                  className="sm:left-4 bottom-1/2 w-fit absolute left-0 z-50 h-full px-4 text-3xl translate-y-1/2 bg-gray-800 bg-opacity-50"
+                >
+                  <BsArrowLeftCircle />
+                </button>
+                <button
+                  type="button"
+                  onClick={nextImage}
+                  className="sm:right-4 bottom-1/2 w-fit absolute right-0 z-50 h-full px-4 text-3xl translate-y-1/2 bg-gray-800 bg-opacity-50"
+                >
+                  <BsArrowRightCircle />
+                </button>
               </div>
             </div>
           </div>
