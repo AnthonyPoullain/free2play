@@ -25,7 +25,7 @@ export default async function Game({ params }: { params: { id: string } }) {
 
 	return game ? (
 		<div className="md:text-left md:items-start flex flex-col items-center text-center">
-			<h1 className="md:text-left mt-4 mb-12 text-3xl font-bold text-center">
+			<h1 className="md:text-left mt-4 mb-12 text-4xl font-bold text-center">
 				{game.title}
 			</h1>
 			<div className="md:grid-cols-2 grid w-full grid-cols-1 gap-4">
@@ -84,7 +84,7 @@ export default async function Game({ params }: { params: { id: string } }) {
 					</>
 				}
 			>
-				<p className="text-justify">{game.description}</p>
+				<p className="leading-7 text-justify">{game.description}</p>
 			</SectionWithTitle>
 
 			<SectionWithTitle title={'More info'}>
@@ -155,7 +155,7 @@ export default async function Game({ params }: { params: { id: string } }) {
 					}
 					games={similarGames.splice(0, 8)}
 					cols={4}
-					border={true}
+					border={false}
 				/>
 			) : null}
 			{popularGames && popularGames.length >= 8 ? (
@@ -167,7 +167,7 @@ export default async function Game({ params }: { params: { id: string } }) {
 					}
 					games={popularGames.splice(0, 8)}
 					cols={4}
-					border={true}
+					border={false}
 				/>
 			) : null}
 		</div>

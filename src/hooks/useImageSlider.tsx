@@ -6,7 +6,7 @@ type ImageSlider = [
   previousImage: () => void
 ];
 
-function useImageSlider(
+export default function useImageSlider(
   initialIndex: number,
   lengthOfArray: number
 ): ImageSlider {
@@ -27,4 +27,3 @@ function useImageSlider(
 
   return [currentImageIndex, nextImage, previousImage];
 }
-export default useImageSlider;
