@@ -6,16 +6,11 @@ export type SectionWithTitleProps = {
 	border?: boolean;
 };
 
-function SectionWithTitle({
-	title,
-	children,
-	border = false,
-}: SectionWithTitleProps) {
+function SectionWithTitle({ title, children }: SectionWithTitleProps) {
 	return (
 		<section
-			className={`w-full border-zinc-300 ${border ? 'border-y' : ''
-				} relative mx-auto py-4 ${title ? 'mt-8 ' : 'mt-6'} mb-6 ${!title && !border ? 'py-0' : ''
-				}`}
+			className={`w-full relative mx-auto py-4 ${title ? 'mt-8 ' : 'mt-6'
+				} mb-6`}
 		>
 			{children}
 			{title && (

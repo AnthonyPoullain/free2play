@@ -9,6 +9,7 @@ import { BiSearch } from 'react-icons/bi';
 import Label from '../Label/Label';
 import { BsBrowserChrome, BsWindows } from 'react-icons/bs';
 import { createPortal } from 'react-dom';
+import { motion } from 'framer-motion';
 
 function debounce(fn: Function, ms = 300) {
   let timeoutId: ReturnType<typeof setTimeout>;
@@ -71,10 +72,20 @@ function SearchModal({
   return isOpen
     ? createPortal(
         <FocusTrap>
-          <div
-            className={`absolute inset-0 top-0 left-0 w-full h-full bg-black bg-opacity-50 z-50 transition-opacity`}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ x: 0 }}
+            transition={{ type: 'tween', ease: 'easeOut', duration: 0.2 }}
+            className={`absolute inset-0 top-0 left-0 w-full h-full bg-black backdrop-blur-sm bg-opacity-50 z-50 transition-opacity`}
           >
-            <div className="h-fit inset-x-[3vw] md:inset-x-[20vw] inset-y-[7vh] md:inset-y-[15vh] absolute sm:p-6 py-4 px-2 bg-gray-800 rounded-md">
+            <motion.div
+              initial={{ y: '-100%' }}
+              animate={{ y: '0%' }}
+              exit={{ y: '-100%' }}
+              transition={{ type: 'tween', ease: 'easeOut', duration: 0.2 }}
+              className="h-fit inset-x-[3vw] md:inset-x-[20vw] inset-y-[7vh] md:inset-y-[15vh] absolute sm:p-6 py-4 px-2 bg-gray-800 rounded-md"
+            >
               {/* SEARCH BAR */}
               <div ref={modalRef} className="relative">
                 <input
@@ -145,8 +156,8 @@ function SearchModal({
                   ))}
                 </div>
               ) : null}
-            </div>
-          </div>
+            </motion.div>
+          </motion.div>
         </FocusTrap>,
         document.querySelector('#modal') as Element
       )

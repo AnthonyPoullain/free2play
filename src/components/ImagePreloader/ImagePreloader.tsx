@@ -18,9 +18,9 @@ function ImagePreloader({ src }: { src: string }): JSX.Element | null {
 				height={80}
 				priority={true}
 				onLoadingComplete={(image) => {
+					setImageLoaded(true);
 					image.classList.remove('h-0');
 					image.classList.remove('opacity-0');
-					setImageLoaded(true);
 				}}
 			/>
 		</>

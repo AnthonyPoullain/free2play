@@ -12,23 +12,23 @@ function Sidebar({
   isOpen: boolean;
   sidebarRef?: RefObject<HTMLDivElement>;
 }) {
-	const GENRES = [
-		'Shooter',
-		'Sci-fi',
-		'Card',
-		'Anime',
-		'Strategy',
-		'MMORPG',
-		'Fighting',
-		'Action RPG',
-		'Battle Royale',
-		'MOBA',
-		'Sports',
-		'Racing',
-		'MMO',
-		'Social',
-		'Fantasy',
-	].sort() as Genre[];
+  const GENRES = [
+    'Shooter',
+    'Sci-fi',
+    'Card',
+    'Anime',
+    'Strategy',
+    'MMORPG',
+    'Fighting',
+    'Action RPG',
+    'Battle Royale',
+    'MOBA',
+    'Sports',
+    'Racing',
+    'MMO',
+    'Social',
+    'Fantasy',
+  ].sort() as Genre[];
 
   return (
     <AnimatePresence>
@@ -64,25 +64,25 @@ function Sidebar({
             </li>
           </ul>
 
-					<div className="gap-x-2 bg-sky-600 flex items-center px-4 py-2 font-bold">
-						<BiCategory />
-						<h2>Genre</h2>
-					</div>
-					<ul className="flex flex-col">
-						{GENRES.map((genre) => (
-							<li key={genre}>
-								<Link
-									className="hover:bg-gray-700 block px-10 py-2 ease-out border-b border-gray-700"
-									href={`/genre/${genre}`}
-								>
-									{genre}
-								</Link>
-							</li>
-						))}
-					</ul>
-				</motion.aside>
-			) : null}
-		</AnimatePresence>
-	);
+          <div className="gap-x-2 bg-sky-600 flex items-center px-4 py-2 font-bold">
+            <BiCategory />
+            <h2>Genre</h2>
+          </div>
+          <ul className="flex flex-col">
+            {GENRES.map((genre) => (
+              <li key={genre}>
+                <Link
+                  className="hover:bg-gray-700 block px-10 py-2 ease-out border-b border-gray-700"
+                  href={`/genre/${genre}`}
+                >
+                  {genre}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </motion.aside>
+      ) : null}
+    </AnimatePresence>
+  );
 }
 export default Sidebar;
