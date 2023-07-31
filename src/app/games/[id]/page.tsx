@@ -117,33 +117,42 @@ export default async function Game({ params }: { params: { id: string } }) {
         </table>
       </SectionWithTitle>
 
-      <SectionWithTitle title="System requirements">
-        <table className="sm:text-left w-full p-2 text-center rounded">
-          <tbody>
-            {game.minimum_system_requirements &&
-            !game.platform.toLowerCase().includes('browser') ? (
-              Object.values(
-                game?.minimum_system_requirements as SystemRequirements
-              ).map((requirement: string) => (
-                <tr key={crypto.randomUUID()}>
-                  <td>{requirement}</td>
+      {(game.minimum_system_requirements?.os ||
+        game.minimum_system_requirements?.memory ||
+        game.minimum_system_requirements?.storage ||
+        game.minimum_system_requirements?.graphics ||
+        game.minimum_system_requirements?.processor) && (
+        <SectionWithTitle title="System requirements">
+          <table className="sm:text-left w-full p-2 text-center rounded">
+            <tbody>
+              {game.minimum_system_requirements &&
+              !game.platform.toLowerCase().includes('browser') ? (
+                Object.values(
+                  game?.minimum_system_requirements as SystemRequirements
+                ).map(
+                  (requirement: string) =>
+                    requirement !== '?' && (
+                      <tr key={crypto.randomUUID()}>
+                        <td>{requirement}</td>
+                      </tr>
+                    )
+                )
+              ) : (
+                <tr>
+                  <td className="font-normal">
+                    <strong className="font-bold">{game?.title}</strong> is a
+                    browser based game and should run smoothly on practically
+                    any PC with an updated web browser. If you have old hardware
+                    or software, you may still be able to play, but your game
+                    experience may suffer. For the best gameplay experience, we
+                    recommend the latest versions of Chrome or Firefox.
+                  </td>
                 </tr>
-              ))
-            ) : (
-              <tr>
-                <td className="font-normal">
-                  <strong className="font-bold">{game?.title}</strong> is a
-                  browser based game and should run smoothly on practically any
-                  PC with an updated web browser. If you have old hardware or
-                  software, you may still be able to play, but your game
-                  experience may suffer. For the best gameplay experience, we
-                  recommend the latest versions of Chrome or Firefox.
-                </td>
-              </tr>
-            )}
-          </tbody>
-        </table>
-      </SectionWithTitle>
+              )}
+            </tbody>
+          </table>
+        </SectionWithTitle>
+      )}
 
       {similarGames && similarGames.length >= 8 ? (
         <CardGrid

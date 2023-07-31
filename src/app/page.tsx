@@ -24,6 +24,7 @@ export default async function Home() {
             <Image
               className="opacity-10 blur-sm object-cover object-center"
               src={recentGames[0].thumbnail}
+              priority
               alt="thumbnail"
               fill
             />
