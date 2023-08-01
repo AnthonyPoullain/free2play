@@ -37,7 +37,7 @@ function ScreenshotSection({ screenshots }: { screenshots: Screenshot[] }) {
         {screenshots.map((screen, i) => (
           <motion.button
             layoutId={screen.id.toString()}
-            className="h-40 overflow-hidden rounded-md"
+            className="h-40 overflow-hidden rounded-md outline-none"
             onClick={() => handleClick(i)}
             key={screen.id}
           >

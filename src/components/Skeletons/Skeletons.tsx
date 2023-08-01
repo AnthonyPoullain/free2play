@@ -14,7 +14,7 @@ export function SkeletonImage() {
   return (
     <div
       role="status"
-      className="animate-pulse object-cover object-center md:space-y-0 md:space-x-8 max-w-[365px] md:flex md:items-center space-y-8"
+      className="animate-pulse md:space-y-0 md:space-x-8 md:flex md:items-center object-cover object-center space-y-8"
     >
       <div className="dark:bg-gray-700 flex items-center justify-center w-full h-40 bg-gray-300">
         <svg

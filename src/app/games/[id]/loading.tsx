@@ -1,4 +1,3 @@
-/* eslint-disable react/jsx-no-undef */
 import {
   SectionWithTitle,
   SkeletonImage,
@@ -52,7 +51,12 @@ export default async function loading() {
           {Array(4)
             .fill(null)
             .map(() => (
-              <SkeletonImage key={crypto.randomUUID()} />
+              <div
+                key={crypto.randomUUID()}
+                className="overflow-hidden h-[155px]"
+              >
+                <SkeletonImage />
+              </div>
             ))}
         </div>
       </SectionWithTitle>
@@ -64,7 +68,12 @@ export default async function loading() {
           {Array(8)
             .fill(null)
             .map(() => (
-              <SkeletonImage key={crypto.randomUUID()} />
+              <div
+                key={crypto.randomUUID()}
+                className="overflow-hidden h-[155px]"
+              >
+                <SkeletonImage />
+              </div>
             ))}
         </div>
       </SectionWithTitle>

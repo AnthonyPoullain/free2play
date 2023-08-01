@@ -18,7 +18,7 @@ function ImagePreloader({ src }: { src: string }): JSX.Element | null {
           alt="screenshot"
           width={600}
           height={80}
-          /* priority={true} */
+          priority={true}
           onError={() => setImgError(true)}
           onLoadingComplete={(image) => {
             setImageLoaded(true);

@@ -161,7 +161,8 @@ export default async function Game({ params }: { params: { id: string } }) {
               More <span className="sm:inline hidden">{game.genre}</span>
             </>
           }
-          games={similarGames.splice(0, 8)}
+          pagination={8}
+          games={similarGames}
           cols={4}
           border={false}
         />
@@ -173,7 +174,8 @@ export default async function Game({ params }: { params: { id: string } }) {
               Popular <span className="sm:inline hidden">Games</span>
             </>
           }
-          games={popularGames.splice(0, 8)}
+          games={popularGames}
+          pagination={8}
           cols={4}
           border={false}
         />

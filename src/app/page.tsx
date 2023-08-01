@@ -66,17 +66,19 @@ export default async function Home() {
         {recentGames && (
           <CardGrid
             title="Recently Added"
-            games={recentGames.splice(0, 4)}
+            games={recentGames.splice(0, 12)}
             border={false}
+            pagination={4}
             cols={4}
           />
         )}
         {popularGames && (
           <CardGrid
             title="Popular Games"
-            games={popularGames.splice(0, 12)}
+            games={popularGames}
+            pagination={4 * 4}
             border={false}
-            cols={3}
+            cols={4}
           />
         )}
       </section>

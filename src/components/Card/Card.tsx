@@ -26,7 +26,7 @@ function Card({ game }: { game: Game }): React.ReactNode {
           )}
         </div>
       </div>
-      <div className="group-focus:scale-105 group-hover:scale-105 transition-transform duration-300 ease-out">
+      <div className="group-focus:scale-105 group-hover:scale-105 transition-transform duration-300 ease-out sm:h-[15vw] sm:max-h-[155px]">
         <ImagePreloader src={game.thumbnail} />
         {/* <Image
 					className="transition-opacity duration-1000 opacity-0"

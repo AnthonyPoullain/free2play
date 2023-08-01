@@ -19,7 +19,7 @@ export default async function RootLayout({
       <body className={`${roboto.className} overflow-y-hidden`}>
         <Header />
         <main className="h-[calc(100dvh-60px)] scroll-pt-[60px] px-4 py-8 w-full overflow-y-auto">
-          <div className="max-w-5xl mx-auto overflow-x-hidden">{children}</div>
+          <div className="max-w-6xl mx-auto overflow-x-hidden">{children}</div>
         </main>
         <div id="modal"></div>
       </body>
